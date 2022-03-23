@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% block script %}
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/menu.css">
+  <link rel="stylesheet" href="style.css">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+</head>
+
+<body>
+
+
+
+
+    
+
+  {% block content %}
+  {% endblock %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='nuage.js') }}"></script>
+
+  </body>
+
+
+</html>
