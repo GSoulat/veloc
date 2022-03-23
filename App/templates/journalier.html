@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  "data a la journée"
+
+  {% for coco in data["hourly"]%}
+      <div>{{ coco}}</div>
+      <div>test</div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

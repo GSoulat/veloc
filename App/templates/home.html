@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <button id="toggleDarkMode"></button>
+
+    <main id="main">
+        
+      <div id="ciel"></div>
+      <div id="herbe"></div>
+      <div id="soleil"></div>
+      <div id="nuages"></div>
+      <h1 class="text-white">Prévision du nombre de vélo</h1>
+      <nav id="cercle">
+        <div id="main-cercle">
+            <div id="center-circle">
+                <ul>
+                    <li class="ch-img-1 ch-item">
+                      <div class="ch-info">
+                        <a href="{{ url_for('home.journalier_page') }}"><h3>Prévision vélo sur 7 jours</h3></a>
+                      </div>
+                    </li>
+                    <li class="ch-img-2  ch-item">
+                      <div class="ch-info">
+                        <a href="{{ url_for('home.date_page') }}"><h3>Prévision vélo sur la journée</h3></a>
+                      </div>
+                    </li>
+                    <li class="ch-img-3  ch-item">
+                      <div class="ch-info">
+                        <a href="{{ url_for('home.semaine_page') }}"><h3>Prévision vélo avec le choix de la date</h3></a>
+                      </div>
+                    </li>
+                </ul>                
+            </div>                    
+        </div>
+    </nav>
+    </main>
+
+</div>
+
+{% endblock %}
