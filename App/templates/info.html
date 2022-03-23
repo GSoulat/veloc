@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+    Ajout candidature
+{% endblock %}
+{% block content%}
+<div class='container mt-5'>
+    <h1>Meteo</h1>
+    <form >
+        <div class="form-group">
+          <label for= "date">Enter date: </label>
+          <input type="date" class="form-control"  id= 'date' placeholder="08/20">
+        </div>
+        <div class="form-group">
+          <label>Enter hour: </label>
+          <input type="appt-time" class="form-control" id="exampleInputPassword1" placeholder="11">
+        </div>
+        <div class="form-group">
+            <label>Enter temperature (in °C): </label>
+            <input type="appt-time" class="form-control" id="exampleInputPassword1" placeholder="11">
+          </div>
+          <div class="form-group">
+            <label>Enter humidity (in %): </label>
+            <input type="appt-time" class="form-control" id="exampleInputPassword1" placeholder="11">
+          </div>
+          <div class="form-group">
+            <label>Enter windspeed (in km/h): </label>
+            <input type="appt-time" class="form-control" id="exampleInputPassword1" placeholder="11">
+          </div>
+          <div class="form-group">
+            <label>Enter type of weather: </label>
+            <input type="select" class="form-control" id="exampleInputPassword1" placeholder="11">
+          </div>
+          <div class="form-group">
+            <label>Enter type of the day: </label>
+            <input type="appt-time" class="form-control" id="exampleInputPassword1" placeholder="11">
+          </div>
+
+        <button type="submit" action = "{{url_for('info.infos')}}" class="btn btn-primary">Predict Rentals</button>
+      </form>
+</div>
+{% endblock %}
