@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}
+    Ajout candidature
+{% endblock %}
+{% block content%}
+<div class='container mt-5'>
+    <h1>Meteo</h1>
+    <form  action = "{{url_for('info.formulaire')}}" method="post" >
+
+        <div class="form-group">
+          <label for= "date">Enter date: </label>
+          <input type="date" class="form-control" name = 'date' id= 'date'>
+        </div>
+
+        <div class="form-group">
+          <label>Enter hour: </label>
+          <input type="appt-time" name="hour" class="form-control" id="hour" placeholder="18">
+        </div>
+
+        <div class="form-group">
+            <label>Enter temperature (in °C): </label>
+            <input type="appt-time" name = 'temp' class="form-control" id="exampleInputPassword1" placeholder="20">
+          </div>
+
+          <div class="form-group">
+            <label>Enter humidity (in %): </label>
+            <input type="appt-time" name = 'humidity' class="form-control" id="exampleInputPassword1" placeholder="14">
+          </div>
+
+          <div class="form-group">
+            <label>Enter windspeed (in km/h): </label>
+            <input type="appt-time" name= 'windspeed' class="form-control" id="exampleInputPassword1" placeholder="20">
+          </div>
+
+          <div class="form-group">
+            <label>Enter type of weather: </label>
+            <select name='weather' class="form-control" id="weather" >
+            <option value=1>Clear/ Few clouds/ Partly cloudy</option>
+            <option value=2>Mist + Cloudy/ Mist + Broken clouds/ Mist + Few clouds/ Mist</option>
+            <option value=3>Light Snow/ Light Rain + Thunderstorm + Scattered clouds/ Light Rain + Scattered clouds</option>
+            <option value=4> Heavy Rain + Ice Pallets + Thunderstorm + Mist/ Snow + Fog </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Enter type of the day: </label>
+
+            <select name="day" class="form-control" id="day" placeholder="Weekend/Holiday/Workingday">
+              <option value="Weekend">Weekend</option>
+              <option value="Working day">Working day</option>
+              <option value="Holliday">Holliday</option>
+           </select>
+            </datalist>
+          </div>
+          
+
+
+        <button type="submit" class="btn btn-primary">Predict Rentals</button>
+      </form>
+</div>
+{% endblock %}
