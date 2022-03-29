@@ -40,6 +40,7 @@ def formulaire():
     date = pd.to_datetime(date)
     month = date.month
     day_week = date.day_name()
+    date= date.date()
 
     if daytype == 'workingday':
         workingday = 1
@@ -62,4 +63,4 @@ def formulaire():
     prediction = model.predict(df)
     print(int(prediction))
 
-    return render_template('date.html') 
+    return render_template('result_pred.html', prediction=int(prediction), hour=hours, date=date)
