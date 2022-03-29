@@ -45,7 +45,6 @@ kiwisolver==1.4.0
 MarkupSafe==2.0.1
 matplotlib==3.5.1
 matplotlib-inline==0.1.3
-mkl-service==2.4.0
 mypy-extensions==0.4.3
 nest-asyncio==1.5.4
 numpy==1.22.2
