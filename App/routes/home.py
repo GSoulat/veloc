@@ -1,9 +1,9 @@
 from flask import Blueprint
 from flask import render_template
-from datetime import datetime, timedelta
-from pytz import timezone
+# from datetime import datetime, timedelta
+# from pytz import timezone
 import requests
-import json
+# import json
 
 home = Blueprint("home", __name__, static_folder="../static", template_folder="../templates/")
 
