@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="/static/menu.css">
+<link rel="stylesheet" href="/static/style.css">
 
 <div class="container-fluid">
 
@@ -28,7 +30,7 @@
                     </li>
                     <li class="ch-img-2  ch-item">
                       <div class="ch-info">
-                        <a href="{{ url_for('home.date_page') }}"><h3>Prévision vélo sur la journée</h3></a>
+                        <a href="{{ url_for('info.infos') }}"><h3>Prévision vélo sur la journée</h3></a>
                       </div>
                     </li>
                     <li class="ch-img-3  ch-item">
