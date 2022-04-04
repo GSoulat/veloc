@@ -1,14 +1,8 @@
 from calendar import week
-# from copyreg import pickle
 import pickle
-# from crypt import methods
-# from unicodedata import name
 from flask import Blueprint, request
 from flask import render_template
 from datetime import date, datetime, timedelta
-# from pytz import timezone
-# import requests
-# import json
 import pandas as pd
 import numpy as np
 import sklearn
@@ -63,4 +57,4 @@ def formulaire():
     prediction = model.predict(df)
     print(int(prediction))
 
-    return render_template('date.html') 
+    return render_template('date.html', prediction=int(prediction), hour=hours, date=date) 
