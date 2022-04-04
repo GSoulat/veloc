@@ -834,4 +834,43 @@
     cursor: pointer;
   }
   
-  
+  #cercle1 {
+    margin-left: 40%;
+    margin-bottom: 90%;
+    position: static;
+ 
+  }
+  #main-cercle1{
+    margin: auto;
+    width: 50%;
+    height: 30%;
+    border-radius: 10%;
+    position: relative;
+    cursor: default;
+    background: rgb(255, 255, 255);
+    box-shadow:
+        inset 0 0 0 60px rgb(255, 0, 0),
+        0 1px 2px rgba(238, 255, 7, 0.726);
+    transition: all 0.4s ease-in-out;
+    z-index: 0;
+}
+#main-cercle1:hover{
+  background: rgb(255, 0, 0);
+  box-shadow:
+        inset 0 0 0 40px rgba(255, 255, 255, 0.76),
+        0 1px 2px rgba(255, 255, 255, 0.938);}
+
+#center-circle{
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   position: relative;
+   cursor: default;
+   z-index: 2;
+      }
+#predict_veloc_hour{
+  margin-bottom: auto;
+  margin-left: auto;
+  position: sticky;
+  z-index: 0;
+}

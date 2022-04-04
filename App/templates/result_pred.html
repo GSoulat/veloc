@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+
+
+
+    <button id="toggleDarkMode"></button>
+
+    
+        
+      <div id="ciel"></div>
+      <div id="herbe"></div>
+      <div id="soleil"></div>
+      <div id="nuages"></div>
+      <h1 class="text-white">Prévision du nombre de vélo</h1>
+      <nav id="cercle1">
+        <div id="main-cercle1">
+            <div id="center-circle1">   
+                <a href="{{ url_for('info.infos') }}"><h3>nouvelle date</h3></a>           
+            </div>                    
+        </div>
+        <div id='predict_veloc_hour'>
+            <h1>le {{date}} à {{hour}}H il y aura environ {{prediction}} vélos emprunté</h1> 
+        </div>
+
+    </nav>
+
+
+
+
+
+    {% endblock %}
+
