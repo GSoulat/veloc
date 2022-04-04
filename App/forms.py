@@ -21,3 +21,4 @@ from .models import Users
 #     date = DateField(label='Date de la candidature',validators=[DataRequired()],format='%Y-%m-%d')
 #     print("En cours d'ajout")
 #     submit = SubmitField(label='Ajouter')
+
