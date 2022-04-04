@@ -88,7 +88,6 @@ def journalier_page():
         'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64'})
 
         prediction.append(int(model.predict(df)))
-        # print(int(prediction))
     
     print(prediction)
     df_data48h['prediction'] = prediction
