@@ -10,6 +10,7 @@ import sklearn
 import requests
 import json
 
+
 info = Blueprint("info", __name__, static_folder="../static", template_folder="../templates/")
 openmodel = open("App/routes/model.pkl", "rb")
 
@@ -27,7 +28,7 @@ def infos():
 
 @info.route('/formulaire', methods = ['get', 'post'])
 def formulaire():
-
+    
     hours = request.form['hour']
     date = request.form['date']
     temp = request.form['temp']
@@ -39,7 +40,6 @@ def formulaire():
     month = date.month
     week = date.day_name()
     date= date.date()
-
     if daytype == 'workingday':
         workingday = 1
         holiday = 0
@@ -50,7 +50,7 @@ def formulaire():
     else:
         workingday = 0
         holiday = 0
-
+        
     data = {'holiday':holiday,'workingday': workingday, 'weather': weather,'temp': temp,'humidity': humidity,'windspeed': windspeed, 'month':month, 'hours': hours,  
               'week':week}
     
@@ -61,4 +61,6 @@ def formulaire():
     print(' x : ', x.json())
 
     return render_template('date.html', prediction=x.json(), hour=hours, date=date) 
+
+
 
