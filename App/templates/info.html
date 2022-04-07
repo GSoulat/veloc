@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block title %}
-    Ajout candidature
+  Saisie comme tu veux
 {% endblock %}
+
 {% block content%}
-<div class='container mt-5'>
-    <h1>Meteo</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/menu.css">
+  <div id="ciel"></div>
+  <div id="herbe"></div>
+  <div id="soleil"></div>
+  <div id="nuages"></div>
+<div class='container mt-5 card bg-light'>
+
+  <img src="https://www.gov.je/_controltemplates/15/C5.MetOfficeResponsive/images/icons/b.svg" width="100">
     <form  action = "{{url_for('info.formulaire')}}" method="post" >
 
         <div class="form-group">
@@ -52,10 +60,10 @@
            </select>
             </datalist>
           </div>
-          
 
-
-        <button type="submit" class="btn btn-primary">Predict Rentals</button>
+        
+        
+        <button type="submit" class="btn btn-danger mb-3">Predict Rentals</button>
       </form>
 </div>
 {% endblock %}

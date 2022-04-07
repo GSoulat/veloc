@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="/static/menu.css">
+<link rel="stylesheet" href="/static/style.css">
 
 <div class="container-fluid">
 
@@ -23,12 +25,12 @@
                 <ul>
                     <li class="ch-img-1 ch-item">
                       <div class="ch-info">
-                        <a href="{{ url_for('home.journalier_page') }}"><h3>Prévision vélo sur 7 jours</h3></a>
+                        <a href="{{ url_for('home.semaine_page') }}"><h3>Prévision vélo sur 5 jours</h3></a>
                       </div>
                     </li>
                     <li class="ch-img-2  ch-item">
                       <div class="ch-info">
-                        <a href="{{ url_for('home.date_page') }}"><h3>Prévision vélo sur la journée</h3></a>
+                        <a href="{{ url_for('home.journalier_page') }}"><h3>Prévision vélo sur la journée</h3></a>
                       </div>
                     </li>
                     <li class="ch-img-3  ch-item">

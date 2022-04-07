@@ -165,17 +165,17 @@
     height: 100vh;
   }
   
-  svg {
+  /* svg {
     height: 75vh;
     width: 75vw;
     position: relative;
     z-index: 10000;
-  }
+  } */
   
-  svg path:nth-child(odd) {
+  /* svg path:nth-child(odd) {
     transform: rotate(2deg);
     transform-origin: center center;
-  }
+  } */
   
   .cls-1 {
     fill: #4ba11f;

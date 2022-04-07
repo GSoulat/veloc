@@ -4,12 +4,31 @@
     Home Page
 {% endblock %}
 
+
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<div class="container-fluid">
+<link rel="stylesheet" href="/static/menu.css">
+    <button id="toggleDarkMode"></button>
+      <div id="ciel"></div>
+      <div id="herbe"></div>
+      <div id="soleil"></div>
+      <div id="nuages"></div>
+      <h1 class="text-white">Prévision du nombre de vélo</h1>
+      <nav id="cercle1" class="card bg-warning">
 
-  "data au jour choisi"
+        <div id='predict_veloc_hour'>
+            <h1>le {{date}} à {{hour}}H il y aura environ {{prediction}} vélos emprunté</h1> 
+        </div>
+        <div id="main-cercle1">
+          <div id="center-circle1">   
+              <a href="{{ url_for('info.infos') }}" class="btn btn-primary"><h3>nouvelle date</h3></a>           
+          </div>                    
+      </div>
+    </nav>
 
-</div>
 
-{% endblock %}
+
+
+
+    {% endblock %}

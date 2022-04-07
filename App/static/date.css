@@ -1,0 +1,13 @@
+body {
+    background-image: url('http://eskipaper.com/images/map-wallpaper-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #4196e2;
+    font-family: Georgia, sans-serif;
+  }
+  .temp {
+    font-size: 50px;
+  }
+  /* button {
+    margin: 30px;
+  } */

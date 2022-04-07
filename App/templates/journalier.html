@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
-
-{% block title %}
-    Home Page
-{% endblock %}
-
 {% block content %}
 
-<div class="container-fluid">
-  "data a la journée"
-
-  {% for coco in data["hourly"]%}
-      <div>{{ coco}}</div>
-      <div>test</div>
-  {% endfor %}
-
+<div class="container-fluid" id="chart1">
+  
 </div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+  var graphs1 = {{ graph1JSON | safe}};
+  Plotly.plot("chart1", graphs1,{});
+</script>
 
 {% endblock %}
