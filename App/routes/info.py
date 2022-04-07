@@ -5,7 +5,7 @@ from flask import render_template
 from datetime import date, datetime, timedelta
 import pandas as pd
 import numpy as np
-import sklearn
+import requests
 
 info = Blueprint("info", __name__, static_folder="../static", template_folder="../templates/")
 openmodel = open("App/routes/model.pkl", "rb")
@@ -24,7 +24,7 @@ def infos():
 
 @info.route('/formulaire', methods = ['get', 'post'])
 def formulaire():
-
+    
     hours = request.form['hour']
     date = request.form['date']
     temp = request.form['temp']
@@ -36,7 +36,6 @@ def formulaire():
     month = date.month
     day_week = date.day_name()
     date= date.date()
-
     if daytype == 'workingday':
         workingday = 1
         holiday = 0
@@ -48,15 +47,21 @@ def formulaire():
         workingday = 0
         holiday = 0
 
-    features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,day_week]
-    final_features = [np.array(features)]
-    df = pd.DataFrame()
-    df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','week']] = final_features
-    df = df.astype({'holiday': 'int64', 'workingday' : 'int64', 'weather': 'int64',
-    'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64'})
+    # features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,day_week]
+    # final_features = [np.array(features)]
+    # df = pd.DataFrame()
+    # df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','week']] = final_features
+    # df = df.astype({'holiday': 'int64', 'workingday' : 'int64', 'weather': 'int64',
+    # 'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64'})
+    url = 'http://192.168.43.244:5001'
+    df = {'hours': hours,'temp':temp,'humidity' : humidity}
 
-    prediction = model.predict(df)
-    print(int(prediction))
+    x = requests.post(url, json=df)
+    print(df)
+    # prediction = model.predict(df)
+    # print(int(prediction))
+
 
     return render_template('date.html', prediction=int(prediction), hour=hours, date=date) 
+
 
