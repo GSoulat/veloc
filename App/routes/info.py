@@ -37,8 +37,9 @@ def formulaire():
     weather = request.form['weather']
     daytype = request.form['day']
     date = pd.to_datetime(date)
+    year = date.year
     month = date.month
-    week = date.day_name()
+    weekday = date.weekday()
     date= date.date()
     if daytype == 'workingday':
         workingday = 1
@@ -52,7 +53,7 @@ def formulaire():
         holiday = 0
         
     data = {'holiday':holiday,'workingday': workingday, 'weather': weather,'temp': temp,'humidity': humidity,'windspeed': windspeed, 'month':month, 'hours': hours,  
-              'week':week}
+              'weekday':weekday, 'year':year}
     
     print('data : ', data)
     x = requests.post('http://localhost:5001/predict', json=data,

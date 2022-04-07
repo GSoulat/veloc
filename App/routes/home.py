@@ -7,12 +7,12 @@ import pickle
 import plotly
 import plotly.express as px
 import json
-import plotly.express as px
+from lightgbm import LGBMRegressor
 
 
 home = Blueprint("home", __name__, static_folder="../static", template_folder="../templates/")
 
-openmodel = open("App/routes/model.pkl", "rb")
+openmodel = open("App/routes/model_lgbm.pkl", "rb")
 
 model = pickle.load(openmodel)
 
@@ -63,7 +63,8 @@ def journalier_page():
         windspeed = data48h['wind_speed']
         month = time.strftime("%m", time.localtime(int(data48h['dt'])))
         date = pd.to_datetime(date)
-        day_week = date.day_name()
+        year = date.year
+        weekday = date.weekday()
 
         weather = 1
         daytype = 'day'
@@ -79,13 +80,12 @@ def journalier_page():
             workingday = 0
             holiday = 0       
 
-        features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,day_week]
-        # features = [temp, humidity, windspeed, month, hours,day_week]
+        features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,weekday,year]
         final_features = [np.array(features)]
         df = pd.DataFrame()
-        df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','week']] = final_features
+        df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','weekday','year']] = final_features
         df = df.astype({'holiday': 'int64', 'workingday' : 'int64', 'weather': 'int64',
-        'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64'})
+        'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64', 'weekday':'int64', 'year':'int64'})
 
         prediction.append(int(model.predict(df)))
     
@@ -101,12 +101,8 @@ def journalier_page():
     df_data48h['horaire'] = heure
     df_data48h['date48'] = date48
     
-    
     fig1 = px.histogram(df_data48h, x ="horaire", y = 'prediction', color="date48", title='prédiction sur les prochaines 48h', barmode="group")
-    # fig1.add_bar(df_data48h, x ="horaire", y = 'prediction', name='coint')
     graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
-    
-    # return render_template('journalier.html', tables=[df_data48h.to_html(classes='data')], titles=df_data48h.columns.values)  
     return render_template('journalier.html', graph1JSON = graph1JSON)  
 
 @home.route('/semaine')
@@ -127,13 +123,12 @@ def semaine_page():
     date = []
     hours = []
     prediction = []
-    day_week = []
     temp = []
     humidity = []
     windspeed = []
     heure = []
     date48 = []
-    donnee = pd.DataFrame(columns = ['workingday' , 'holiday', 'hours','month','date','temp','humidity','windspeed','day_week','heure','weather', 'date48' ])    
+    donnee = pd.DataFrame(columns = ['holiday', 'workingday', 'weather', 'temp','humidity', 'windspeed', 'month', 'hours','weekday','year','heure','date48' ])    
     
     for dataday in response["list"]:
         hours= time.strftime("%H", time.localtime(int(dataday['dt'])))
@@ -143,7 +138,8 @@ def semaine_page():
         humidity = dataday['main']['humidity']
         windspeed =dataday['wind']['speed']
         date = pd.to_datetime(date)
-        day_week = date.day_name()
+        year = date.year
+        weekday = date.weekday()
         heure= time.strftime("%H:%M", time.localtime(int(dataday['dt'])))
         date48= time.strftime("%D", time.localtime(int(dataday['dt'])))
 
@@ -162,23 +158,22 @@ def semaine_page():
             holiday = 0
             
         
-        to_append = [workingday , holiday, hours,month,date,temp,humidity,windspeed,day_week,heure,weather,date48]
+        to_append = [holiday, workingday, weather, temp,humidity, windspeed, month, hours,weekday,year,heure,date48]
         df_length = len(donnee)
         donnee.loc[df_length] = to_append
             
-        # print(donnee)
 
-        features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,day_week]
+        features = [holiday, workingday, weather, temp, humidity, windspeed, month, hours,weekday,year]
         final_features = [np.array(features)]
         df = pd.DataFrame()
-        df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','week']] = final_features
+        df[['holiday','workingday','weather','temp','humidity','windspeed','month','hours','weekday','year']] = final_features
         df = df.astype({'holiday': 'int64', 'workingday' : 'int64', 'weather': 'int64', 
-                        'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64'})
+                        'temp' : 'float64', 'humidity':'int64', 'windspeed':'float64', 'month':'int64', 'hours':'int64', 'weekday':'int64', 'year':'int64'})
 
         prediction.append(int(model.predict(df)))
     
 
-    
+    donnee['prediction'] = prediction
     print(df.shape)
     print('**********************************************************************************************')
     print(heure)
@@ -186,7 +181,7 @@ def semaine_page():
     print(date48)
     print('**********************************************************************************************')
     print(donnee)
-    donnee['prediction'] = prediction
+    
     
     fig1 = px.histogram(donnee, x ="heure", y = 'prediction', color="date48", title='prédiction sur les prochaines 48h', barmode="group")
     graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
