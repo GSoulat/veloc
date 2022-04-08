@@ -1,6 +1,6 @@
 from calendar import week
 import pickle
-from tkinter import X
+# from tkinter import X
 from flask import Blueprint, request, jsonify
 from flask import render_template
 from datetime import date, datetime, timedelta
@@ -10,15 +10,12 @@ import sklearn
 import requests
 import json
 # from dotenv import load_dotenv
-# import os
+import os
 # load_dotenv(override=True)
 
 
 
 info = Blueprint("info", __name__, static_folder="../static", template_folder="../templates/")
-openmodel = open("App/routes/model_rf.pkl", "rb")
-
-model = pickle.load(openmodel)
 
 api_key_holiday= "14ae356bbffb49c58651e72ef87dbf32"
 api_key = "1cf4a33bf5ed0e1005a61cb94eded3af"
@@ -67,8 +64,8 @@ def formulaire():
     data = {'holiday':holiday,'workingday': workingday, 'weather': weather,'temp': temp,'humidity': humidity,'windspeed': windspeed, 'month':month, 'hours': hours,  
               'weekday':weekday, 'year':year}
     
-    x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data,
-            headers={'Content-Type': 'application/json'})
+    # x = requests.post('http://127.0.0.1:5001/predict', json=data, headers={'Content-Type': 'application/json'})
+    x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data, headers={'Content-Type': 'application/json'})
 
     return render_template('date.html', prediction=x.json(), hour=hours, date=date) 
 
