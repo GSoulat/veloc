@@ -30,6 +30,7 @@ MANIFEST
 webenv/
 data_cleaning/
 machine_learning/
+envinternet/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
