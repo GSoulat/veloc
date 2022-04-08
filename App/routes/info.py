@@ -10,7 +10,9 @@ import sklearn
 import requests
 import json
 import os
-
+from dotenv import load_dotenv
+import os
+load_dotenv(override=True)
 
 info = Blueprint("info", __name__, static_folder="../static", template_folder="../templates/")
 openmodel = open("App/routes/model_rf.pkl", "rb")

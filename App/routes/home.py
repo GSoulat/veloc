@@ -10,7 +10,7 @@ import json
 from lightgbm import LGBMRegressor
 from dotenv import load_dotenv
 import os
-load_dotenv()
+load_dotenv(override=True)
 
 home = Blueprint("home", __name__, static_folder="../static", template_folder="../templates/")
 
