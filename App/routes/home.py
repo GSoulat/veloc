@@ -57,9 +57,6 @@ def journalier_page():
     temp_day = 0
     api_key_holiday= os.getenv('api_key_holiday')
     
-
-    
-    
     df_data48h = pd.DataFrame(data=response['hourly'])
     df_data48h = df_data48h.drop(["pressure","dew_point", "uvi", "clouds", "visibility", "wind_deg", "wind_gust", "pop"], axis=1)
     for data48h in response['hourly']:
@@ -74,7 +71,7 @@ def journalier_page():
         weekday = date.weekday()
         day = date.day
         climat = data48h['weather'][0]['description']
-        print(climat)
+        # print(climat)
         
         if climat in list_weather1:
             weather = 1
@@ -84,7 +81,7 @@ def journalier_page():
             weather = 3
         else:
             weather = 4
-        print(weather)
+        # print(weather)
         if day != temp_day:
             url_holiday = "https://holidays.abstractapi.com/v1/?api_key=%s&country=US&year=%s&month=%s&day=%s" % (api_key_holiday, year, month ,day)
             response_holiday = requests.get(url_holiday).json()
@@ -112,7 +109,7 @@ def journalier_page():
 
         prediction.append(int(model.predict(df)))
     
-    print(prediction)
+    # print(prediction)
     df_data48h['prediction'] = prediction
     heure = []
     date48 = []
@@ -123,7 +120,7 @@ def journalier_page():
     
     df_data48h['horaire'] = heure
     df_data48h['date48'] = date48
-    print(df)
+    # print(df)
     fig1 = px.histogram(df_data48h, x ="horaire", y = 'prediction', color="date48", title='prédiction sur les prochaines 48h', barmode="group")
     graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('journalier.html', graph1JSON = graph1JSON)  
@@ -169,7 +166,7 @@ def semaine_page():
         day = date.day
 
         climat = dataday['weather'][0]['description']
-        print(climat)
+        # print(climat)
         
         if climat in list_weather1:
             weather = 1
@@ -214,13 +211,13 @@ def semaine_page():
     
 
     donnee['prediction'] = prediction
-    print(df.shape)
-    print('**********************************************************************************************')
-    print(heure)
-    print('**********************************************************************************************')
-    print(date48)
-    print('**********************************************************************************************')
-    print(donnee)
+    # print(df.shape)
+    # print('**********************************************************************************************')
+    # print(heure)
+    # print('**********************************************************************************************')
+    # print(date48)
+    # print('**********************************************************************************************')
+    # print(donnee)
     
     
     fig1 = px.histogram(donnee, x ="heure", y = 'prediction', color="date48", title='prédiction sur les prochaines 48h', barmode="group")
