@@ -14,7 +14,7 @@ load_dotenv()
 
 home = Blueprint("home", __name__, static_folder="../static", template_folder="../templates/")
 
-openmodel = open("App/routes/model_lgbm.pkl", "rb")
+openmodel = open("App/routes/model_rf.pkl", "rb")
 
 model = pickle.load(openmodel)
 
