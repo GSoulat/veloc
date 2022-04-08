@@ -65,7 +65,7 @@ def formulaire():
               'weekday':weekday, 'year':year}
     
     # x = requests.post('http://127.0.0.1:5001/predict', json=data, headers={'Content-Type': 'application/json'})
-    x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data, headers={'Content-Type': 'application/json'})
+    x = requests.post('https://velocapi.herokuapp.com/predict', json=data, headers={'Content-Type': 'application/json'})
 
     return render_template('date.html', prediction=x.json(), hour=hours, date=date) 
 
