@@ -63,11 +63,11 @@ def formulaire():
     data = {'holiday':holiday,'workingday': workingday, 'weather': weather,'temp': temp,'humidity': humidity,'windspeed': windspeed, 'month':month, 'hours': hours,  
               'weekday':weekday, 'year':year}
     
-    print('data : ', data)
+    # print('data : ', data)
     x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data,
             headers={'Content-Type': 'application/json'})
     
-    print(' x : ', x.json())
+    # print(' x : ', x.json())
 
     return render_template('date.html', prediction=x.json(), hour=hours, date=date) 
 
