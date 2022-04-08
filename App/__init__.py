@@ -1,8 +1,7 @@
-import os
 from flask import Flask
 from dotenv import load_dotenv
 import os
-load_dotenv()
+load_dotenv(override=True)
 
 def create_app():
     app = Flask(__name__)
