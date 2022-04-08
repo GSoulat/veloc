@@ -9,15 +9,19 @@ import numpy as np
 import sklearn
 import requests
 import json
-import os
-from dotenv import load_dotenv
-import os
-load_dotenv(override=True)
+# from dotenv import load_dotenv
+# import os
+# load_dotenv(override=True)
+
+
 
 info = Blueprint("info", __name__, static_folder="../static", template_folder="../templates/")
 openmodel = open("App/routes/model_rf.pkl", "rb")
 
 model = pickle.load(openmodel)
+
+api_key_holiday= "14ae356bbffb49c58651e72ef87dbf32"
+api_key = "1cf4a33bf5ed0e1005a61cb94eded3af"
 
 @info.route('/info', methods=['get', 'post'])
 def infos():
@@ -45,8 +49,6 @@ def formulaire():
     date= date.date()
     day = date.day
     
-    
-    
     url_holiday = "https://holidays.abstractapi.com/v1/?api_key=%s&country=US&year=%s&month=%s&day=%s" % (api_key_holiday, year, month ,day)
     response_holiday = requests.get(url_holiday).json()
 
@@ -65,11 +67,8 @@ def formulaire():
     data = {'holiday':holiday,'workingday': workingday, 'weather': weather,'temp': temp,'humidity': humidity,'windspeed': windspeed, 'month':month, 'hours': hours,  
               'weekday':weekday, 'year':year}
     
-    # print('data : ', data)
     x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data,
             headers={'Content-Type': 'application/json'})
-    
-    # print(' x : ', x.json())
 
     return render_template('date.html', prediction=x.json(), hour=hours, date=date) 
 

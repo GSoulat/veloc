@@ -8,9 +8,9 @@ import plotly
 import plotly.express as px
 import json
 from lightgbm import LGBMRegressor
-from dotenv import load_dotenv
-import os
-load_dotenv(override=True)
+# from dotenv import load_dotenv
+# import os
+# load_dotenv(override=True)
 
 home = Blueprint("home", __name__, static_folder="../static", template_folder="../templates/")
 
@@ -28,6 +28,9 @@ list_weather4 = ['thunderstorm with light rain', 'thunderstorm with rain', 'thun
                     'heavy thunderstorm','	ragged thunderstorm','thunderstorm with light drizzle','thunderstorm with drizzle','thunderstorm with heavy drizzle',
                     'heavy intensity rain','very heavy rain','extreme rain','freezing rain','light intensity shower rain','shower rain',
                     'heavy intensity shower rain', 'ragged shower rain', 'Heavy snow', 'Heavy shower snow', 'volcanic ash', 'squalls','tornado']
+
+api_key_holiday= "14ae356bbffb49c58651e72ef87dbf32"
+api_key = "1cf4a33bf5ed0e1005a61cb94eded3af"
 
 @home.route('/')
 @home.route('/home')
@@ -47,15 +50,13 @@ def journalier_page():
     Returns:
         [str]: [home page code]
     """
-
-    api_key = os.getenv('api_key_open_weather')
     lat = "38.89438"
     lon = "-77.03160"
     url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, api_key)
     response = requests.get(url).json()
     prediction = []
     temp_day = 0
-    api_key_holiday= os.getenv('api_key_holiday')
+    
     
     df_data48h = pd.DataFrame(data=response['hourly'])
     df_data48h = df_data48h.drop(["pressure","dew_point", "uvi", "clouds", "visibility", "wind_deg", "wind_gust", "pop"], axis=1)
@@ -71,7 +72,6 @@ def journalier_page():
         weekday = date.weekday()
         day = date.day
         climat = data48h['weather'][0]['description']
-        # print(climat)
         
         if climat in list_weather1:
             weather = 1
@@ -81,7 +81,7 @@ def journalier_page():
             weather = 3
         else:
             weather = 4
-        # print(weather)
+            
         if day != temp_day:
             url_holiday = "https://holidays.abstractapi.com/v1/?api_key=%s&country=US&year=%s&month=%s&day=%s" % (api_key_holiday, year, month ,day)
             response_holiday = requests.get(url_holiday).json()
@@ -132,9 +132,6 @@ def semaine_page():
     Returns:
         [str]: [home page code]
     """
-    print('start')
-    api_key_holiday= os.getenv('api_key_holiday')
-    api_key = os.getenv('api_key_open_weather')
     lat = "38.89438"
     lon = "-77.03160"
     url = "http://api.openweathermap.org/data/2.5/forecast?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, api_key)
@@ -211,14 +208,6 @@ def semaine_page():
     
 
     donnee['prediction'] = prediction
-    # print(df.shape)
-    # print('**********************************************************************************************')
-    # print(heure)
-    # print('**********************************************************************************************')
-    # print(date48)
-    # print('**********************************************************************************************')
-    # print(donnee)
-    
     
     fig1 = px.histogram(donnee, x ="heure", y = 'prediction', color="date48", title='prédiction sur les prochaines 48h', barmode="group")
     graph1JSON = json.dumps(fig1, cls=plotly.utils.PlotlyJSONEncoder)
