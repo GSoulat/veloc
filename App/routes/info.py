@@ -64,7 +64,7 @@ def formulaire():
               'weekday':weekday, 'year':year}
     
     print('data : ', data)
-    x = requests.post('http://localhost:5001/predict', json=data,
+    x = requests.post('https://apimodelveloc.azurewebsites.net/predict', json=data,
             headers={'Content-Type': 'application/json'})
     
     print(' x : ', x.json())
