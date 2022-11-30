@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.10.6
 WORKDIR /etc/easypanel/projects/veloc/velocapp/code/
 
 COPY requirements.txt requirements.txt
