@@ -13,4 +13,4 @@ EXPOSE 5000
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "run.py" ]
+CMD [ ""gunicorn", "-w 4", "-b", "0.0.0.0:8000", "run:app"" ]
