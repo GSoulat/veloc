@@ -1,6 +1,5 @@
-FROM python:3.8-slim-buster
-
-WORKDIR /
+FROM python:3
+WORKDIR /etc/easypanel/projects/veloc/velocapp/code/docker build
 
 COPY requirements.txt requirements.txt
 
