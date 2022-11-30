@@ -15,9 +15,9 @@ kiwisolver==1.4.2
 lightgbm==3.3.2
 MarkupSafe==2.1.1
 matplotlib==3.5.1
-numpy==1.22.3
+numpy
 packaging==21.3
-pandas==1.4.2
+pandas
 Pillow==9.1.0
 plotly==5.7.0
 pyparsing==3.0.7
