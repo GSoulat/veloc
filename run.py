@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- encoding: utf-8 -*-
+# coding=utf8
 
 from App import app
 import os,sys
