@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
 FROM python:3.10.6
 WORKDIR /etc/easypanel/projects/veloc/velocapp/code/
 
@@ -13,4 +15,4 @@ EXPOSE 5000
 
 ENTRYPOINT [ "python" ]
 
-CMD [ ""gunicorn", "-w 4", "-b", "0.0.0.0:8000", "run:app"" ]
+CMD [ ""gunicorn", "-w 4", "-b", "0.0.0.0", "run:app"" ]
