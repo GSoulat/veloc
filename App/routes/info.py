@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
 from calendar import week
 import pickle
 # from tkinter import X

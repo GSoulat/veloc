@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
 from flask import Flask
 # from dotenv import load_dotenv
 import os

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
 import os
 # import psycopg2
 # from dotenv import load_dotenv
