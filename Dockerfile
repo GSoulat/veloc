@@ -11,8 +11,8 @@ RUN pip install -r requirements.txt
 
 COPY . ./etc/easypanel/projects/veloc/velocapp/code/
 
-EXPOSE 5000
+EXPOSE 80
 
 ENTRYPOINT [ "python" ]
 
-CMD [ ""gunicorn", "-w 4", "-b", "0.0.0.0", "run:app"" ]
+CMD [ ""gunicorn", "-w 4", "-b", "0.0.0.0:80", "run:app"" ]
