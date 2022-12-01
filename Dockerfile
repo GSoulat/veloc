@@ -9,7 +9,7 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-COPY . ./etc/easypanel/projects/veloc/velocapp/code/
+COPY . .
 
 EXPOSE 80
 
