@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from App import app
 import os
 
