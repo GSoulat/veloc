@@ -1,4 +1,5 @@
 #!/usr/local/bin/python
+# -*- coding: ascii -*-
 from App import app
 import os,sys
 
