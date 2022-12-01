@@ -1,6 +1,4 @@
-
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
+#!/usr/local/bin/python
 from flask import Blueprint, render_template
 import requests
 import pandas as pd

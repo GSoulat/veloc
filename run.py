@@ -1,6 +1,4 @@
-#!/usr/bin/python
-# coding=utf8
-
+#!/usr/local/bin/python
 from App import app
 import os,sys
 

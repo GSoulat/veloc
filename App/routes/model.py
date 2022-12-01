@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
+#!/usr/local/bin/python
 import pandas as pd 
 import plotly.express as px 
 import seaborn as sns 
