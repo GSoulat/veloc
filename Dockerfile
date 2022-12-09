@@ -11,8 +11,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 80
-
 ENTRYPOINT [ "python" ]
 
 CMD [ "run.py" ]
