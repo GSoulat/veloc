@@ -17,4 +17,6 @@ COPY --from=compiler /opt/venv /opt/venv
 
 COPY . .
 
-CMD [ "python", "run.py" ]
+ENTRYPOINT [ "python" ]
+
+CMD [ "run.py" ]
