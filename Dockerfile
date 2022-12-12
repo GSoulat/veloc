@@ -6,6 +6,7 @@ WORKDIR /
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
+RUN . /opt/venv/bin/activate
 
 COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip
