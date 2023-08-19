@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: basic
+    image: veloc
+    container_name: veloc
     ports:
     - 5000:5000
