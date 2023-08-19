@@ -6,4 +6,4 @@ services:
       dockerfile: docker/Dockerfile
     image: basic
     ports:
-    - 82:80
+    - 5000:5000
