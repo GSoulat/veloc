@@ -9,7 +9,7 @@ services:
     networks:
       - myhost_network
     ports:
-    - 80:5000
+    - 5000:5000
     
 networks:
   myhost_network:
