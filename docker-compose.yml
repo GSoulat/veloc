@@ -7,10 +7,10 @@ services:
     image: veloc
     container_name: veloc
     networks:
-      - myhost_network
+      - dokploy-network
     ports:
     - 5000:5000
     
 networks:
-  myhost_network:
+  dokploy-network:
     external: true
